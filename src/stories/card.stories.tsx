@@ -16,8 +16,8 @@ export default {
 
 const Template: Story<CardProps> = (args) => <Card {...args} />;
 
-export const ExampleCard = Template.bind({});
-ExampleCard.args = {
-  title: 'Example Card',
+export const CardComponent = Template.bind({});
+CardComponent.args = {
+  title: '${githubUsername} Card',
   content: 'This is the content of the card.',
 };
