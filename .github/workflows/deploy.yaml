@@ -21,13 +21,13 @@ jobs:
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
         echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
-        echo "::set-output name=githubActor::${{ github.actor }}"  # Establece una variable de salida
+        echo "${{ github.actor }}" > $GITHUB_ENV_ACTION_PATH/github_actor  # Guarda el valor en un archivo dentro de la carpeta de acciones
 
     - name: Upload GitHub Actor
       uses: actions/upload-artifact@v2
       with:
         name: github_actor
-        path: .github_actor  # Carga el valor como un artefacto
+        path: $GITHUB_ENV_ACTION_PATH  # Carga el valor como un artefacto
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,10 +42,10 @@ jobs:
     - name: Debug Environment Variables
       run: |
         env | sort
-        cat github_actor  # Muestra el contenido del artefacto
+        cat github_actor/github_actor  # Muestra el contenido del artefacto
 
     - id: build-publish
       uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
       with:
         path: storybook-static # Cambia a tu carpeta de compilación
-        github-actor: "$(cat github_actor)"  # Recupera el valor del artefacto
+        github-actor: "$(cat github_actor/github_actor)"  # Recupera el valor del artefacto
