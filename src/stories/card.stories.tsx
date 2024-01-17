@@ -8,9 +8,6 @@ const githubUsername = process.env.GITHUB_ACTOR;
 export default {
   title: 'Card',
   component: Card,
-  parameters: {
-    path: `${githubUsername}/card`,
-  },
 } as Meta;
 
 
