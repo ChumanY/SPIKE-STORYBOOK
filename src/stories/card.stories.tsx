@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import Card, { CardProps } from '../components/card/card';
 
 export default {
-  title: 'Card',
+  title: `${process.env.GITHUB_ACTOR}/Card`,
   component: Card,
 } as Meta;
 
