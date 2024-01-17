@@ -20,7 +20,7 @@ jobs:
       run: |
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
-        echo "REACT_APP_GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
+        echo 'REACT_APP_GITHUB_ACTOR=${{ github.actor }}' >> $GITHUB_ENV
 
 
   deploy:
@@ -28,8 +28,7 @@ jobs:
     steps:
     - name: Debug Environment Variables
       run: |
-        env | sort
-        echo "Contenido de \$GITHUB_ENV:"
+        echo "Contenido de \$GITHUB_ENV después de establecer REACT_APP_GITHUB_ACTOR:"
         cat $GITHUB_ENV
         echo "REACT_APP_GITHUB_ACTOR=${REACT_APP_GITHUB_ACTOR}"
     - id: build-publish
