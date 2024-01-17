@@ -3,8 +3,9 @@ import { Meta, Story } from '@storybook/react';
 import Card, { CardProps } from '../components/card/card';
 
 
-const githubUsername = process.env.GITHUB_ACTOR; 
-console.log(`El valor de GITHUB_ACTOR es: ${githubUsername}`);
+const githubUsername = process.env.REACT_APP_GITHUB_ACTOR; 
+console.log(`El valor de REACT_APP_GITHUB_ACTOR es: ${githubUsername}`);
+console.log(process.env);
 
 export default {
   title: 'Card',
