@@ -6,7 +6,7 @@ import Card, { CardProps } from '../components/card/card';
 const githubUsername = process.env.GITHUB_ACTOR; 
 
 export default {
-  title: 'Card',
+  title: githubUsername,
   component: Card,
 } as Meta;
 
