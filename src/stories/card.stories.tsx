@@ -5,6 +5,9 @@ import Card, { CardProps } from '../components/card/card';
 export default {
   title: 'Card',
   component: Card,
+  parameters: {
+    path: 'aldair/componente/aldair/card',
+  },
 } as Meta;
 
 const Template: Story<CardProps> = (args) => <Card {...args} />;
