@@ -9,7 +9,7 @@ export default {
   title: 'Card',
   component: Card,
   parameters: {
-    path: `componente/${githubUsername}`, 
+    path: `${githubUsername}/card`,
   },
 } as Meta;
 
