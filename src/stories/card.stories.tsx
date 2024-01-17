@@ -6,7 +6,7 @@ import Card, { CardProps } from '../components/card/card';
 const githubUsername = process.env.GITHUB_ACTOR; 
 
 export default {
-  title: githubUsername,
+  title: 'Card',
   component: Card,
 } as Meta;
 
@@ -15,6 +15,6 @@ const Template: Story<CardProps> = (args) => <Card {...args} />;
 
 export const CardComponent = Template.bind({});
 CardComponent.args = {
-  title: '${githubUsername} Card',
+  title: `${githubUsername}'s Card`, 
   content: 'This is the content of the card.',
 };
