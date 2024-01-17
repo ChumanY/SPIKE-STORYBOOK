@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - "main" # change to the branch you wish to deploy from
+      - "main" # Cambia a la rama desde la que deseas implementar
 
 permissions:
   contents: read
@@ -13,38 +13,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Set Git User
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
-                  echo "::set-output name=githubActor::${{ github.actor }}"  
+    - name: Set Git User
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        echo "GITHUB_ACTOR=${{ github.actor }}" >> $GITHUB_ENV
+        echo "::set-output name=githubActor::${{ github.actor }}"  # Establece una variable de salida
 
-      - name: Upload GitHub Actor
-        uses: actions/upload-artifact@v2
-        with:
-          name: github_actor
-          path: .github_actor
+    - name: Upload GitHub Actor
+      uses: actions/upload-artifact@v2
+      with:
+        name: github_actor
+        path: .github_actor  # Carga el valor como un artefacto
 
   deploy:
     runs-on: ubuntu-latest
-     needs: build
+    needs: build  # Espera que el trabajo 'build' haya terminado
+
     steps:
-     - name: Download GitHub Actor
+    - name: Download GitHub Actor
       uses: actions/download-artifact@v2
       with:
-        name: github_actor
+        name: github_actor  # Descarga el artefacto
 
-       - name: Debug Environment Variables
-        run: |
-          env | sort
-          cat github_actor
+    - name: Debug Environment Variables
+      run: |
+        env | sort
+        cat github_actor  # Muestra el contenido del artefacto
 
-      - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
-        with:
-          path: storybook-static # change to your build folder
-          github-actor: "$(cat github_actor)" 
+    - id: build-publish
+      uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
+      with:
+        path: storybook-static # Cambia a tu carpeta de compilación
+        github-actor: "$(cat github_actor)"  # Recupera el valor del artefacto
