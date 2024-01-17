@@ -24,6 +24,7 @@ jobs:
         echo "${{ github.actor }}" > $GITHUB_WORKSPACE/github_actor  # Guarda el valor en un archivo en el directorio de trabajo
 
     - name: Upload GitHub Actor
+      id: upload-actor
       uses: actions/upload-artifact@v2
       with:
         name: github_actor
@@ -44,4 +45,9 @@ jobs:
         env | sort
         cat github_actor  # Muestra el contenido del artefacto
 
-    - id
+    - name: Build and Publish
+      id: build-publish
+      uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
+      with:
+        path: storybook-static # Cambia a tu carpeta de compilación
+        github-actor: "$(cat github_actor)"  # Recupera el valor del artefacto
