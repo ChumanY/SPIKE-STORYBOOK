@@ -19,5 +19,5 @@ jobs:
           AUTHOR_NAME=$(git log -1 --pretty=format:'%an')
           echo "AUTHOR_NAME=$AUTHOR_NAME" >> $GITHUB_ENV
 
-    - name: Print author name
-      run: echo "Author name is ${{ env.AUTHOR_NAME }}"
+      - name: Print author name
+        run: echo "Author name is ${{ env.AUTHOR_NAME }}"
