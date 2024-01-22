@@ -4,7 +4,9 @@ const { execSync } = require('child_process');
 // Obtener el nombre del autor del último commit usando un comando de git
 const getAuthorName = () => {
   try {
-    return execSync('git log -1 --pretty=format:%an').toString().trim();
+    const authorName = execSync('git log -1 --pretty=format:%an').toString().trim();
+    console.log('Nombre del autor:', authorName); // Agregar log aquí
+    return authorName;
   } catch (error) {
     console.error('Error obteniendo el nombre del autor:', error.message);
     return 'unknown-author';
