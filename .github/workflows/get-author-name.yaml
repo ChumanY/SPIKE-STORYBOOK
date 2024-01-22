@@ -1,0 +1,23 @@
+name: Get Author Name
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  get-author-name:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get author name
+        id: get-author
+        run: |
+          AUTHOR_NAME=$(git log -1 --pretty=format:'%an')
+          echo "AUTHOR_NAME=$AUTHOR_NAME" >> $GITHUB_ENV
+
+    - name: Print author name
+      run: echo "Author name is ${{ env.AUTHOR_NAME }}"
